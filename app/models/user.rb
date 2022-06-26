@@ -54,6 +54,14 @@ class User < ApplicationRecord
     update!(refresh_jti: nil)
   end
 
+  def user_select
+    where(id: 1)
+  end
+
+  def response_json(payload = {})
+    as_json(only: [:id, :name]).merge(payload).with_indifferent_access
+  end
+
   private
   # email小文字化
   def downcase_email

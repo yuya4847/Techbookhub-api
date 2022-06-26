@@ -5,7 +5,6 @@ module TokenGenerateService
 
   ## クラスメソッド
   module ClassMethods
-
     # アクセストークンのインスタンス生成(オプション => sub: encrypt user id)
     def decode_access_token(token, options = {})
       UserAuth::AccessToken.new(token: token, options: options)
@@ -25,11 +24,9 @@ module TokenGenerateService
     def from_refresh_token(token)
       decode_refresh_token(token).entity_for_user
     end
-
   end
 
   ## インスタンスメソッド
-
   # アクセストークンのインスタンス生成
   def encode_access_token(payload = {})
     UserAuth::AccessToken.new(user_id: id, payload: payload)
@@ -49,5 +46,4 @@ module TokenGenerateService
   def to_refresh_token
     encode_refresh_token.token
   end
-
 end
